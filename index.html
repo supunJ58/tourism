@@ -1,0 +1,2379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discover Sri Lanka - The Pearl of the Indian Ocean</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Lora:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --ocean-blue: #0077be;
+            --deep-blue: #004e89;
+            --coral: #ff6b6b;
+            --sunset: #ff8c42;
+            --golden: #ffd93d;
+            --emerald: #00b894;
+            --jungle: #2d4a3e;
+            --sand: #f4e8d8;
+            --white: #ffffff;
+            --dark: #1a1a1a;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--white);
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+
+        .serif {
+            font-family: 'Lora', serif;
+        }
+
+        /* Animated Wave Background */
+        .wave-bg {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 200px;
+            z-index: -1;
+            opacity: 0.1;
+        }
+
+        .wave {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 200%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120'%3E%3Cpath d='M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z' opacity='.25'/%3E%3Cpath d='M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z' opacity='.5'/%3E%3Cpath d='M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z'/%3E%3C/svg%3E") repeat-x;
+            background-size: 50% 100%;
+            animation: wave 15s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite;
+            transform: translate3d(0, 0, 0);
+        }
+
+        .wave:nth-of-type(2) {
+            animation: wave 12s cubic-bezier(0.36, 0.45, 0.63, 0.53) -.125s infinite, swell 7s ease -1.25s infinite;
+            opacity: 0.7;
+        }
+
+        @keyframes wave {
+            0% { transform: translateX(0); }
+            50% { transform: translateX(-25%); }
+            100% { transform: translateX(-50%); }
+        }
+
+        @keyframes swell {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 119, 190, 0.1);
+            transform: translateY(-100%);
+            animation: slideDown 0.8s ease forwards 0.3s;
+        }
+
+        @keyframes slideDown {
+            to { transform: translateY(0); }
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--ocean-blue) 0%, var(--deep-blue) 50%, var(--emerald) 100%);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(255, 215, 61, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 107, 107, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, rgba(0, 184, 148, 0.2) 0%, transparent 50%);
+            animation: pulse 15s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 10vw, 7rem);
+            line-height: 1.1;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards 0.5s;
+        }
+
+        .hero-subtitle {
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards 0.7s;
+        }
+
+        .hero-cta {
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards 0.9s;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Floating particles */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .particle:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .particle:nth-child(2) { left: 20%; animation-delay: 2s; }
+        .particle:nth-child(3) { left: 30%; animation-delay: 4s; }
+        .particle:nth-child(4) { left: 40%; animation-delay: 1s; }
+        .particle:nth-child(5) { left: 50%; animation-delay: 3s; }
+        .particle:nth-child(6) { left: 60%; animation-delay: 5s; }
+        .particle:nth-child(7) { left: 70%; animation-delay: 7s; }
+        .particle:nth-child(8) { left: 80%; animation-delay: 2s; }
+        .particle:nth-child(9) { left: 90%; animation-delay: 4s; }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Destination Cards */
+        .destination-card {
+            position: relative;
+            height: 450px;
+            border-radius: 24px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0;
+            transform: translateY(50px) scale(0.9);
+        }
+
+        .destination-card.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        .destination-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.8) 100%);
+            z-index: 1;
+            transition: all 0.5s ease;
+        }
+
+        .destination-card:hover {
+            transform: translateY(-16px) scale(1.02);
+            box-shadow: 0 30px 80px rgba(0, 119, 190, 0.3);
+        }
+
+        .destination-card:hover::before {
+            background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.6) 100%);
+        }
+
+        .card-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.5s ease;
+        }
+
+        .destination-card:hover .card-bg {
+            transform: scale(1.1);
+        }
+
+        .card-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 32px;
+            z-index: 2;
+            color: white;
+        }
+
+        /* Experience Cards */
+        .experience-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0, 119, 190, 0.1);
+            transition: all 0.4s ease;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .experience-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .experience-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 20px 60px rgba(0, 119, 190, 0.2);
+        }
+
+        .icon-circle {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .icon-circle::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+            transform: scale(0);
+            transition: transform 0.6s ease;
+        }
+
+        .experience-card:hover .icon-circle::before {
+            transform: scale(1);
+        }
+
+        /* Buttons */
+        .btn-primary {
+            background: linear-gradient(135deg, var(--coral), var(--sunset));
+            color: white;
+            padding: 18px 40px;
+            border-radius: 50px;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.4s ease;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 14px;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 40px rgba(255, 107, 107, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            padding: 18px 40px;
+            border-radius: 50px;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.4s ease;
+            border: 2px solid white;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 14px;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: var(--ocean-blue);
+            transform: translateY(-4px);
+        }
+
+        /* Stats Section */
+        .stats {
+            background: linear-gradient(135deg, var(--emerald), var(--ocean-blue));
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stats::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+
+        .stat-number {
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        /* Timeline */
+        .timeline-dot {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--coral), var(--sunset));
+            position: relative;
+            box-shadow: 0 0 0 4px rgba(255, 107, 107, 0.2);
+        }
+
+        .timeline-dot::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: white;
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.3); }
+        }
+
+        /* Gallery Grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        .gallery-item {
+            position: relative;
+            height: 300px;
+            border-radius: 20px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+
+        .gallery-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.7) 100%);
+            z-index: 1;
+            transition: all 0.4s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .gallery-item:hover::before {
+            background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.5) 100%);
+        }
+
+        /* Section Reveal */
+        .section-title {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s ease;
+        }
+
+        .section-title.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--deep-blue);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120'%3E%3Cpath d='M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z' fill='%23ffffff'/%3E%3C/svg%3E");
+            background-size: cover;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 3rem;
+            }
+            
+            .stat-number {
+                font-size: 2.5rem;
+            }
+
+            .destination-card {
+                height: 350px;
+            }
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-15px); }
+            60% { transform: translateX(-50%) translateY(-8px); }
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Custom cursor trail effect */
+        .cursor-trail {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--coral);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transition: all 0.3s ease;
+            opacity: 0;
+        }
+
+        /* Loading animation */
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Wave Background -->
+    <div class="wave-bg">
+        <div class="wave" style="fill: var(--ocean-blue);"></div>
+        <div class="wave" style="fill: var(--emerald);"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="max-w-7xl mx-auto px-6 py-5">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <div class="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-ocean-blue to-emerald">
+                        ☀️ Sri Lanka
+                    </div>
+                </div>
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="#destinations" class="text-dark hover:text-ocean-blue transition-colors duration-300 font-semibold">Destinations</a>
+                    <a href="#experiences" class="text-dark hover:text-ocean-blue transition-colors duration-300 font-semibold">Experiences</a>
+                    <a href="#culture" class="text-dark hover:text-ocean-blue transition-colors duration-300 font-semibold">Culture</a>
+                    <a href="#plan" class="text-dark hover:text-ocean-blue transition-colors duration-300 font-semibold">Plan Trip</a>
+                    <button class="bg-gradient-to-r from-coral to-sunset text-white px-6 py-2 rounded-full font-bold hover:shadow-lg transition-all">
+                        Book Now
+                    </button>
+                </div>
+                <button id="mobile-menu-btn" class="md:hidden text-ocean-blue">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed inset-0 bg-white z-[999] transform translate-x-full transition-transform duration-300 md:hidden">
+        <div class="flex flex-col h-full p-6">
+            <div class="flex justify-between items-center mb-12">
+                <div class="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-ocean-blue to-emerald">
+                    ☀️ Sri Lanka
+                </div>
+                <button id="close-menu-btn" class="text-ocean-blue">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="flex flex-col gap-6">
+                <a href="#destinations" class="text-2xl text-dark hover:text-ocean-blue transition-colors mobile-menu-link">Destinations</a>
+                <a href="#experiences" class="text-2xl text-dark hover:text-ocean-blue transition-colors mobile-menu-link">Experiences</a>
+                <a href="#culture" class="text-2xl text-dark hover:text-ocean-blue transition-colors mobile-menu-link">Culture</a>
+                <a href="#plan" class="text-2xl text-dark hover:text-ocean-blue transition-colors mobile-menu-link">Plan Trip</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="particles">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        </div>
+        <div class="max-w-7xl mx-auto px-6 text-center relative z-10">
+            <div class="mb-6">
+                <span class="inline-block px-8 py-3 bg-white/20 backdrop-blur-sm text-white rounded-full text-sm font-bold tracking-wider hero-subtitle">
+                    THE PEARL OF THE INDIAN OCEAN
+                </span>
+            </div>
+            <h1 class="hero-title font-black text-white mb-8">
+                Discover Sri Lanka
+            </h1>
+            <p class="hero-subtitle text-xl md:text-2xl text-white/90 max-w-3xl mx-auto mb-12 leading-relaxed">
+                Where ancient heritage meets pristine beaches, lush tea plantations kiss misty mountains, and wildlife roams free in their natural paradise
+            </p>
+            <div class="hero-cta flex flex-wrap gap-6 justify-center items-center">
+                <button class="btn-primary">
+                    <span>Start Your Journey</span>
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                    </svg>
+                </button>
+                <button class="btn-secondary">
+                    <span>Watch Video</span>
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats py-20 px-6 relative z-10">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-8 text-center relative z-10">
+                <div class="stat-item">
+                    <span class="stat-number">8</span>
+                    <p class="text-xl font-semibold">UNESCO World Heritage Sites</p>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">1,300+</span>
+                    <p class="text-xl font-semibold">Kilometers of Coastline</p>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">430+</span>
+                    <p class="text-xl font-semibold">Bird Species</p>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">2,500+</span>
+                    <p class="text-xl font-semibold">Years of History</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Destinations Section -->
+    <section id="destinations" class="py-24 px-6 relative z-10">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="section-title text-5xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-ocean-blue to-emerald mb-6">
+                    Must-Visit Destinations
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    From ancient cities to pristine beaches, explore the diverse wonders of Sri Lanka
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Sigiriya -->
+                <div class="destination-card" onclick="openLocation('Sigiriya Rock Fortress', 7.9570, 80.7603)">
+                    <div class="card-bg" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"></div>
+                    <div class="card-content">
+                        <div class="flex items-center gap-2 mb-3">
+                            <svg class="w-5 h-5 text-golden" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                            </svg>
+                            <span class="text-golden text-sm font-bold">UNESCO HERITAGE</span>
+                        </div>
+                        <h3 class="text-3xl font-black mb-2">Sigiriya Rock Fortress</h3>
+                        <p class="text-white/80 mb-4">Ancient fortress rising 200m above the jungle, featuring stunning frescoes and ancient engineering marvels</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm">📍 Central Province</span>
+                            <span class="text-sm">⭐ 4.8/5</span>
+                            <button class="bg-white/20 hover:bg-white/30 px-4 py-2 rounded-full text-xs font-bold transition-all">
+                                View Map
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ella -->
+                <div class="destination-card" onclick="openLocation('Ella', 6.8667, 81.0467)">
+                    <div class="card-bg" style="background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);"></div>
+                    <div class="card-content">
+                        <div class="flex items-center gap-2 mb-3">
+                            <svg class="w-5 h-5 text-golden" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"/>
+                            </svg>
+                            <span class="text-golden text-sm font-bold">ADVENTURE HOTSPOT</span>
+                        </div>
+                        <h3 class="text-3xl font-black mb-2">Ella</h3>
+                        <p class="text-white/80 mb-4">Mountain paradise with tea plantations, scenic train rides, waterfalls, and breathtaking viewpoints</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm">📍 Uva Province</span>
+                            <span class="text-sm">⭐ 4.9/5</span>
+                            <button class="bg-white/20 hover:bg-white/30 px-4 py-2 rounded-full text-xs font-bold transition-all">
+                                View Map
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Galle -->
+                <div class="destination-card" onclick="openLocation('Galle Fort', 6.0329, 80.2168)">
+                    <div class="card-bg" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);"></div>
+                    <div class="card-content">
+                        <div class="flex items-center gap-2 mb-3">
+                            <svg class="w-5 h-5 text-golden" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                            </svg>
+                            <span class="text-golden text-sm font-bold">UNESCO HERITAGE</span>
+                        </div>
+                        <h3 class="text-3xl font-black mb-2">Galle Fort</h3>
+                        <p class="text-white/80 mb-4">17th century Dutch colonial fort with cobblestone streets, boutique hotels, and stunning ocean views</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm">📍 Southern Province</span>
+                            <span class="text-sm">⭐ 4.7/5</span>
+                            <button class="bg-white/20 hover:bg-white/30 px-4 py-2 rounded-full text-xs font-bold transition-all">
+                                View Map
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Yala -->
+                <div class="destination-card" onclick="openLocation('Yala National Park', 6.3724, 81.5198)">
+                    <div class="card-bg" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);"></div>
+                    <div class="card-content">
+                        <div class="flex items-center gap-2 mb-3">
+                            <svg class="w-5 h-5 text-golden" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"/>
+                            </svg>
+                            <span class="text-golden text-sm font-bold">WILDLIFE SAFARI</span>
+                        </div>
+                        <h3 class="text-3xl font-black mb-2">Yala National Park</h3>
+                        <p class="text-white/80 mb-4">Home to the world's highest density of leopards, plus elephants, sloth bears, and 215 bird species</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm">📍 Southern Province</span>
+                            <span class="text-sm">⭐ 4.8/5</span>
+                            <button class="bg-white/20 hover:bg-white/30 px-4 py-2 rounded-full text-xs font-bold transition-all">
+                                View Map
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kandy -->
+                <div class="destination-card" onclick="openLocation('Kandy', 7.2906, 80.6337)">
+                    <div class="card-bg" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);"></div>
+                    <div class="card-content">
+                        <div class="flex items-center gap-2 mb-3">
+                            <svg class="w-5 h-5 text-golden" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                            </svg>
+                            <span class="text-golden text-sm font-bold">UNESCO HERITAGE</span>
+                        </div>
+                        <h3 class="text-3xl font-black mb-2">Kandy</h3>
+                        <p class="text-white/80 mb-4">Sacred city home to the Temple of the Tooth Relic, surrounded by lush hills and a serene lake</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm">📍 Central Province</span>
+                            <span class="text-sm">⭐ 4.6/5</span>
+                            <button class="bg-white/20 hover:bg-white/30 px-4 py-2 rounded-full text-xs font-bold transition-all">
+                                View Map
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mirissa -->
+                <div class="destination-card" onclick="openLocation('Mirissa', 5.9470, 80.4586)">
+                    <div class="card-bg" style="background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);"></div>
+                    <div class="card-content">
+                        <div class="flex items-center gap-2 mb-3">
+                            <svg class="w-5 h-5 text-golden" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"/>
+                            </svg>
+                            <span class="text-golden text-sm font-bold">BEACH PARADISE</span>
+                        </div>
+                        <h3 class="text-3xl font-black mb-2">Mirissa</h3>
+                        <p class="text-white/80 mb-4">Pristine beaches, world-class whale watching, vibrant nightlife, and the best sunsets in Sri Lanka</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm">📍 Southern Coast</span>
+                            <span class="text-sm">⭐ 4.9/5</span>
+                            <button class="bg-white/20 hover:bg-white/30 px-4 py-2 rounded-full text-xs font-bold transition-all">
+                                View Map
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experiences Section -->
+    <section id="experiences" class="py-24 px-6 bg-sand relative z-10">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="section-title text-5xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-ocean-blue to-emerald mb-6">
+                    Unforgettable Experiences
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Create memories that will last a lifetime with these unique Sri Lankan adventures
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="experience-card text-center">
+                    <div class="icon-circle mx-auto" style="background: linear-gradient(135deg, var(--coral), var(--sunset));">
+                        <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 text-dark">Ancient Heritage</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Explore 8 UNESCO World Heritage Sites including ancient kingdoms, sacred temples, and archaeological wonders
+                    </p>
+                </div>
+
+                <div class="experience-card text-center">
+                    <div class="icon-circle mx-auto" style="background: linear-gradient(135deg, var(--ocean-blue), var(--emerald));">
+                        <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 text-dark">Wildlife Safaris</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Encounter leopards, elephants, whales, and hundreds of bird species in their natural habitats
+                    </p>
+                </div>
+
+                <div class="experience-card text-center">
+                    <div class="icon-circle mx-auto" style="background: linear-gradient(135deg, var(--emerald), var(--golden));">
+                        <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 text-dark">Tea Country</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Journey through emerald tea plantations, visit estates, and taste the world's finest Ceylon tea
+                    </p>
+                </div>
+
+                <div class="experience-card text-center">
+                    <div class="icon-circle mx-auto" style="background: linear-gradient(135deg, var(--sunset), var(--coral));">
+                        <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 text-dark">Beach Bliss</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Relax on golden beaches, surf world-class waves, dive coral reefs, and enjoy coastal paradise
+                    </p>
+                </div>
+
+                <div class="experience-card text-center">
+                    <div class="icon-circle mx-auto" style="background: linear-gradient(135deg, var(--jungle), var(--emerald));">
+                        <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 text-dark">Adventure Sports</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        White water rafting, rock climbing, zip-lining, and trekking through stunning landscapes
+                    </p>
+                </div>
+
+                <div class="experience-card text-center">
+                    <div class="icon-circle mx-auto" style="background: linear-gradient(135deg, var(--coral), var(--golden));">
+                        <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 text-dark">Culinary Journey</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Savor authentic Sri Lankan cuisine, learn to cook traditional dishes, and explore spice gardens
+                    </p>
+                </div>
+
+                <div class="experience-card text-center">
+                    <div class="icon-circle mx-auto" style="background: linear-gradient(135deg, var(--ocean-blue), var(--deep-blue));">
+                        <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 text-dark">Cultural Festivals</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Experience vibrant festivals, traditional dance performances, and centuries-old cultural celebrations
+                    </p>
+                </div>
+
+                <div class="experience-card text-center">
+                    <div class="icon-circle mx-auto" style="background: linear-gradient(135deg, var(--emerald), var(--ocean-blue));">
+                        <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 text-dark">Wellness Retreats</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Rejuvenate with Ayurvedic treatments, yoga retreats, and meditation in tranquil settings
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Culture Section -->
+    <section id="culture" class="py-24 px-6 relative z-10">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="section-title text-5xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-ocean-blue to-emerald mb-6">
+                    Rich Cultural Heritage
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Immerse yourself in 2,500 years of history, tradition, and vibrant culture
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-12">
+                <div class="text-center">
+                    <div class="text-6xl mb-6">🏛️</div>
+                    <h3 class="text-2xl font-bold mb-4">Ancient Kingdoms</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Discover the ruins of Anuradhapura, Polonnaruwa, and other ancient capitals that showcase Sri Lanka's glorious past
+                    </p>
+                </div>
+
+                <div class="text-center">
+                    <div class="text-6xl mb-6">🎭</div>
+                    <h3 class="text-2xl font-bold mb-4">Traditional Arts</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Experience Kandyan dance, traditional drumming, mask carving, and other art forms preserved for centuries
+                    </p>
+                </div>
+
+                <div class="text-center">
+                    <div class="text-6xl mb-6">🛕</div>
+                    <h3 class="text-2xl font-bold mb-4">Sacred Sites</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Visit Buddhist temples, Hindu kovils, Islamic mosques, and Christian churches in perfect harmony
+                    </p>
+                </div>
+            </div>
+
+            <div class="mt-20 bg-gradient-to-r from-ocean-blue to-emerald rounded-3xl p-12 text-white text-center">
+                <h3 class="text-4xl font-black mb-4">Did You Know?</h3>
+                <p class="text-xl mb-8 max-w-3xl mx-auto">
+                    Sri Lanka has the highest literacy rate in South Asia at 92.6%, and is home to one of the oldest living trees in the world - the 2,300-year-old Sri Maha Bodhi in Anuradhapura
+                </p>
+                <button class="btn-secondary">
+                    <span>Learn More</span>
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Plan Your Trip Section -->
+    <section id="plan" class="py-24 px-6 bg-sand relative z-10">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="section-title text-5xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-ocean-blue to-emerald mb-6">
+                    Plan Your Perfect Trip
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Let us help you create an unforgettable Sri Lankan adventure
+                </p>
+            </div>
+
+            <div class="bg-white rounded-3xl p-8 md:p-12 shadow-2xl">
+                <form class="space-y-6">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-bold text-dark mb-2">Your Name</label>
+                            <input type="text" placeholder="John Doe" class="w-full px-6 py-4 rounded-xl border-2 border-gray-200 focus:border-ocean-blue focus:outline-none transition-all">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-dark mb-2">Email Address</label>
+                            <input type="email" placeholder="john@example.com" class="w-full px-6 py-4 rounded-xl border-2 border-gray-200 focus:border-ocean-blue focus:outline-none transition-all">
+                        </div>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-bold text-dark mb-2">Arrival Date</label>
+                            <input type="date" class="w-full px-6 py-4 rounded-xl border-2 border-gray-200 focus:border-ocean-blue focus:outline-none transition-all">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-dark mb-2">Duration (Days)</label>
+                            <select class="w-full px-6 py-4 rounded-xl border-2 border-gray-200 focus:border-ocean-blue focus:outline-none transition-all">
+                                <option>3-5 Days</option>
+                                <option>6-10 Days</option>
+                                <option>11-14 Days</option>
+                                <option>15+ Days</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-bold text-dark mb-2">Interests (Select all that apply)</label>
+                        <div class="grid md:grid-cols-3 gap-4">
+                            <label class="flex items-center gap-3 p-4 rounded-xl border-2 border-gray-200 cursor-pointer hover:border-ocean-blue transition-all">
+                                <input type="checkbox" class="w-5 h-5">
+                                <span>🏖️ Beaches</span>
+                            </label>
+                            <label class="flex items-center gap-3 p-4 rounded-xl border-2 border-gray-200 cursor-pointer hover:border-ocean-blue transition-all">
+                                <input type="checkbox" class="w-5 h-5">
+                                <span>🏛️ Heritage</span>
+                            </label>
+                            <label class="flex items-center gap-3 p-4 rounded-xl border-2 border-gray-200 cursor-pointer hover:border-ocean-blue transition-all">
+                                <input type="checkbox" class="w-5 h-5">
+                                <span>🐘 Wildlife</span>
+                            </label>
+                            <label class="flex items-center gap-3 p-4 rounded-xl border-2 border-gray-200 cursor-pointer hover:border-ocean-blue transition-all">
+                                <input type="checkbox" class="w-5 h-5">
+                                <span>⛰️ Adventure</span>
+                            </label>
+                            <label class="flex items-center gap-3 p-4 rounded-xl border-2 border-gray-200 cursor-pointer hover:border-ocean-blue transition-all">
+                                <input type="checkbox" class="w-5 h-5">
+                                <span>🍵 Tea Tours</span>
+                            </label>
+                            <label class="flex items-center gap-3 p-4 rounded-xl border-2 border-gray-200 cursor-pointer hover:border-ocean-blue transition-all">
+                                <input type="checkbox" class="w-5 h-5">
+                                <span>🧘 Wellness</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-bold text-dark mb-2">Special Requests or Questions</label>
+                        <textarea rows="4" placeholder="Tell us about your dream Sri Lankan adventure..." class="w-full px-6 py-4 rounded-xl border-2 border-gray-200 focus:border-ocean-blue focus:outline-none transition-all resize-none"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-primary w-full justify-center text-lg">
+                        <span>Get Your Custom Itinerary</span>
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                        </svg>
+                    </button>
+                </form>
+            </div>
+
+            <div class="mt-12 grid md:grid-cols-3 gap-6">
+                <div class="text-center p-6 bg-white rounded-2xl">
+                    <div class="text-3xl mb-3">✈️</div>
+                    <h4 class="font-bold mb-2">Easy Arrival</h4>
+                    <p class="text-sm text-gray-600">Visa on arrival for 40+ countries</p>
+                </div>
+                <div class="text-center p-6 bg-white rounded-2xl">
+                    <div class="text-3xl mb-3">💰</div>
+                    <h4 class="font-bold mb-2">Great Value</h4>
+                    <p class="text-sm text-gray-600">Affordable luxury experiences</p>
+                </div>
+                <div class="text-center p-6 bg-white rounded-2xl">
+                    <div class="text-3xl mb-3">☀️</div>
+                    <h4 class="font-bold mb-2">Year-Round</h4>
+                    <p class="text-sm text-gray-600">Perfect weather any season</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Modal -->
+    <div id="map-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-[9999] hidden items-center justify-center p-6">
+        <div class="bg-white rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-hidden shadow-2xl transform transition-all">
+            <div class="p-6 border-b border-gray-200 flex justify-between items-center bg-gradient-to-r from-ocean-blue to-emerald">
+                <h3 id="modal-title" class="text-2xl font-black text-white"></h3>
+                <button onclick="closeMapModal()" class="text-white hover:bg-white/20 p-2 rounded-full transition-all">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="p-6">
+                <div id="map-container" class="w-full h-[500px] rounded-2xl overflow-hidden mb-6"></div>
+                <div class="flex gap-4">
+                    <a id="google-maps-link" href="#" target="_blank" class="btn-primary flex-1 justify-center">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                        </svg>
+                        <span>Open in Google Maps</span>
+                    </a>
+                    <button onclick="getDirections()" class="btn-secondary flex-1 justify-center" style="color: var(--ocean-blue); border-color: var(--ocean-blue);">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+                        </svg>
+                        <span>Get Directions</span>
+                    </button>
+                </div>
+                <div class="mt-6 p-4 bg-sand rounded-2xl">
+                    <h4 class="font-bold text-dark mb-2">📍 Location Details</h4>
+                    <p id="location-coords" class="text-gray-600 text-sm"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-16 px-6 relative z-10">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-12 mb-12">
+                <div>
+                    <div class="text-3xl font-black text-white mb-4">☀️ Sri Lanka</div>
+                    <p class="text-white/70 leading-relaxed mb-4">
+                        Your gateway to discovering the pearl of the Indian Ocean
+                    </p>
+                    <div class="flex gap-3">
+                        <a href="#" class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-all">
+                            <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-all">
+                            <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-all">
+                            <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-white mb-4">Explore</h4>
+                    <ul class="space-y-2 text-white/70">
+                        <li><a href="#destinations" class="hover:text-white transition-colors">Destinations</a></li>
+                        <li><a href="#experiences" class="hover:text-white transition-colors">Experiences</a></li>
+                        <li><a href="#culture" class="hover:text-white transition-colors">Culture</a></li>
+                        <li><a href="#plan" class="hover:text-white transition-colors">Plan Trip</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-white mb-4">Resources</h4>
+                    <ul class="space-y-2 text-white/70">
+                        <li><a href="#" class="hover:text-white transition-colors">Travel Guide</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Visa Information</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Best Time to Visit</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Local Tips</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-white mb-4">Contact</h4>
+                    <ul class="space-y-2 text-white/70">
+                        <li>📧 info@srilanka.travel</li>
+                        <li>📱 +94 11 234 5678</li>
+                        <li>📍 Colombo, Sri Lanka</li>
+                        <li>⏰ 24/7 Support</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-white/20 pt-8 text-center text-white/60">
+                <p>&copy; 2024 Sri Lanka Tourism. All rights reserved. Discover the Pearl of the Indian Ocean.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Global variables for location
+        let currentLocation = { name: '', lat: 0, lng: 0 };
+
+        // Open location in map modal
+        function openLocation(name, lat, lng) {
+            currentLocation = { name, lat, lng };
+            
+            // Update modal content
+            document.getElementById('modal-title').textContent = name;
+            document.getElementById('location-coords').textContent = `Coordinates: ${lat.toFixed(4)}°N, ${lng.toFixed(4)}°E`;
+            
+            // Create Google Maps embed
+            const mapContainer = document.getElementById('map-container');
+            mapContainer.innerHTML = `
+                <iframe
+                    width="100%"
+                    height="100%"
+                    frameborder="0"
+                    style="border:0"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=${lat},${lng}&zoom=13"
+                    allowfullscreen>
+                </iframe>
+            `;
+            
+            // Update Google Maps link
+            document.getElementById('google-maps-link').href = `https://www.google.com/maps/search/?api=1&query=${lat},${lng}`;
+            
+            // Show modal
+            const modal = document.getElementById('map-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            
+            // Prevent body scroll
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close map modal
+        function closeMapModal() {
+            const modal = document.getElementById('map-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Get directions
+        function getDirections() {
+            const { lat, lng } = currentLocation;
+            window.open(`https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`, '_blank');
+        }
+
+        // Close modal on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeMapModal();
+            }
+        });
+
+        // Close modal on background click
+        document.getElementById('map-modal')?.addEventListener('click', (e) => {
+            if (e.target.id === 'map-modal') {
+                closeMapModal();
+            }
+        });
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animated elements
+        document.querySelectorAll('.destination-card, .experience-card, .section-title').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Mobile menu functionality
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const closeMenuBtn = document.getElementById('close-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
+
+        mobileMenuBtn?.addEventListener('click', () => {
+            mobileMenu.classList.remove('translate-x-full');
+        });
+
+        closeMenuBtn?.addEventListener('click', () => {
+            mobileMenu.classList.add('translate-x-full');
+        });
+
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('translate-x-full');
+            });
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offset = 80;
+                    const targetPosition = target.offsetTop - offset;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Navbar scroll effect
+        let lastScroll = 0;
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > 100) {
+                nav.style.boxShadow = '0 10px 40px rgba(0,0,0,0.1)';
+            } else {
+                nav.style.boxShadow = 'none';
+            }
+            
+            lastScroll = currentScroll;
+        });
+
+        // Form submission
+        document.querySelector('form')?.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thank you for your interest! We will contact you shortly with your custom itinerary.');
+            e.target.reset();
+        });
+
+        // Parallax effect for hero
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            if (hero && scrolled < window.innerHeight) {
+                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+
+        // Add staggered animation delays to cards
+        document.querySelectorAll('.destination-card').forEach((card, index) => {
+            card.style.transitionDelay = `${index * 0.1}s`;
+        });
+
+        document.querySelectorAll('.experience-card').forEach((card, index) => {
+            card.style.transitionDelay = `${index * 0.1}s`;
+        });
+
+        // Add hover effect to destination cards
+        document.querySelectorAll('.destination-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.cursor = 'pointer';
+            });
+        });
+
+        // Interactive stats counter animation
+        function animateCounter(element, target, duration = 2000) {
+            let start = 0;
+            const increment = target / (duration / 16);
+            const timer = setInterval(() => {
+                start += increment;
+                if (start >= target) {
+                    element.textContent = target;
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(start);
+                }
+            }, 16);
+        }
+
+        // Observe stats section for counter animation
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const statNumbers = entry.target.querySelectorAll('.stat-number');
+                    statNumbers.forEach(stat => {
+                        const text = stat.textContent;
+                        const number = parseInt(text.replace(/\D/g, ''));
+                        if (!isNaN(number)) {
+                            stat.textContent = '0';
+                            animateCounter(stat, number);
+                        }
+                    });
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const statsSection = document.querySelector('.stats');
+        if (statsSection) {
+            statsObserver.observe(statsSection);
+        }
+
+        // Add notification system for bookings
+        function showNotification(message, type = 'success') {
+            const notification = document.createElement('div');
+            notification.className = `fixed top-24 right-6 z-[10000] px-6 py-4 rounded-2xl shadow-2xl transform transition-all duration-500 ${
+                type === 'success' ? 'bg-emerald text-white' : 'bg-coral text-white'
+            }`;
+            notification.innerHTML = `
+                <div class="flex items-center gap-3">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                    </svg>
+                    <span class="font-semibold">${message}</span>
+                </div>
+            `;
+            document.body.appendChild(notification);
+            
+            // Animate in
+            setTimeout(() => {
+                notification.style.transform = 'translateX(0)';
+            }, 10);
+            
+            // Remove after 4 seconds
+            setTimeout(() => {
+                notification.style.transform = 'translateX(400px)';
+                setTimeout(() => notification.remove(), 500);
+            }, 4000);
+        }
+
+        // Update book now buttons
+        document.querySelectorAll('button').forEach(btn => {
+            if (btn.textContent.includes('Book Now')) {
+                btn.addEventListener('click', () => {
+                    showNotification('Opening booking portal...', 'success');
+                });
+            }
+        });
+    </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supun Jayasooriya - Project Management & Agricultural Development</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0f4c3a;
+            --primary-light: #1a6b4f;
+            --accent: #d4af37;
+            --bg: #faf8f5;
+            --text: #1a1a1a;
+            --text-light: #666;
+            --cream: #f5f1ea;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        .serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Animated Background Pattern */
+        .bg-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.03;
+            background-image: 
+                repeating-linear-gradient(45deg, transparent, transparent 35px, var(--primary) 35px, var(--primary) 36px),
+                repeating-linear-gradient(-45deg, transparent, transparent 35px, var(--primary) 35px, var(--primary) 36px);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(250, 248, 245, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(15, 76, 58, 0.1);
+            transform: translateY(-100%);
+            animation: slideDown 0.8s ease forwards 0.3s;
+        }
+
+        @keyframes slideDown {
+            to { transform: translateY(0); }
+        }
+
+        /* Hero Section */
+        .hero-title {
+            font-size: clamp(2.5rem, 8vw, 6rem);
+            line-height: 1.1;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards 0.5s;
+        }
+
+        .hero-subtitle {
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards 0.7s;
+        }
+
+        .hero-description {
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards 0.9s;
+        }
+
+        .hero-cta {
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards 1.1s;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Decorative Elements */
+        .accent-line {
+            position: relative;
+        }
+
+        .accent-line::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 60px;
+            height: 4px;
+            background: var(--accent);
+            transform: scaleX(0);
+            transform-origin: left;
+            animation: scaleX 0.8s ease forwards 1.2s;
+        }
+
+        @keyframes scaleX {
+            to { transform: scaleX(1); }
+        }
+
+        /* Cards */
+        .card {
+            background: white;
+            border: 1px solid rgba(15, 76, 58, 0.08);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(15, 76, 58, 0.15);
+            border-color: var(--accent);
+        }
+
+        /* Icon containers */
+        .icon-box {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .icon-box::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+            transform: scale(0);
+            transition: transform 0.6s ease;
+        }
+
+        .card:hover .icon-box::before {
+            transform: scale(1);
+        }
+
+        /* Progress bars */
+        .skill-bar {
+            height: 8px;
+            background: var(--cream);
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 4px;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .skill-bar.visible .skill-progress {
+            transform: scaleX(1);
+        }
+
+        /* Button styles */
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            padding: 16px 32px;
+            border-radius: 12px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(15, 76, 58, 0.3);
+        }
+
+        .btn-secondary {
+            color: var(--primary);
+            padding: 16px 32px;
+            border-radius: 12px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            border: 2px solid var(--primary);
+            background: transparent;
+            cursor: pointer;
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Timeline */
+        .timeline-item {
+            position: relative;
+            padding-left: 40px;
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: all 0.6s ease;
+        }
+
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--accent);
+            border: 3px solid var(--bg);
+            box-shadow: 0 0 0 2px var(--primary);
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: 7px;
+            top: 24px;
+            width: 2px;
+            height: calc(100% + 20px);
+            background: linear-gradient(180deg, var(--primary), transparent);
+        }
+
+        .timeline-item:last-child::after {
+            display: none;
+        }
+
+        /* Stats counter */
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+
+        /* Contact form */
+        .form-input {
+            width: 100%;
+            padding: 16px;
+            border: 2px solid rgba(15, 76, 58, 0.1);
+            border-radius: 12px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(15, 76, 58, 0.1);
+        }
+
+        /* Custom cursor effect */
+        .cursor-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.2s ease;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: white;
+        }
+
+        .social-link {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: var(--accent);
+            transform: translateY(-4px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .stat-number {
+                font-size: 2rem;
+            }
+        }
+
+        /* Section reveal animation */
+        .section-title {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease;
+        }
+
+        .section-title.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Pattern -->
+    <div class="bg-pattern"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="serif text-2xl font-bold text-primary">SJ</div>
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="#about" class="text-text hover:text-primary transition-colors duration-300">About</a>
+                    <a href="#expertise" class="text-text hover:text-primary transition-colors duration-300">Expertise</a>
+                    <a href="#interests" class="text-text hover:text-primary transition-colors duration-300">Interests</a>
+                    <a href="#journey" class="text-text hover:text-primary transition-colors duration-300">Journey</a>
+                    <a href="#contact" class="btn-primary text-sm">Get in Touch</a>
+                </div>
+                <button id="mobile-menu-btn" class="md:hidden text-primary">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed inset-0 bg-white z-[999] transform translate-x-full transition-transform duration-300 md:hidden">
+        <div class="flex flex-col h-full p-6">
+            <div class="flex justify-between items-center mb-12">
+                <div class="serif text-2xl font-bold text-primary">SJ</div>
+                <button id="close-menu-btn" class="text-primary">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="flex flex-col gap-6">
+                <a href="#about" class="text-2xl text-text hover:text-primary transition-colors mobile-menu-link">About</a>
+                <a href="#expertise" class="text-2xl text-text hover:text-primary transition-colors mobile-menu-link">Expertise</a>
+                <a href="#interests" class="text-2xl text-text hover:text-primary transition-colors mobile-menu-link">Interests</a>
+                <a href="#journey" class="text-2xl text-text hover:text-primary transition-colors mobile-menu-link">Journey</a>
+                <a href="#contact" class="text-2xl text-text hover:text-primary transition-colors mobile-menu-link">Contact</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center px-6 pt-20">
+        <div class="max-w-7xl mx-auto text-center relative z-10">
+            <div class="mb-6">
+                <span class="inline-block px-6 py-2 bg-primary/5 text-primary rounded-full text-sm font-semibold tracking-wide hero-subtitle">
+                    PROJECT MANAGEMENT ENTHUSIAST
+                </span>
+            </div>
+            <h1 class="hero-title serif font-black text-primary mb-6 accent-line inline-block">
+                Supun Jayasooriya
+            </h1>
+            <p class="hero-description text-xl md:text-2xl text-text-light max-w-3xl mx-auto mb-8 leading-relaxed">
+                Empowering Sri Lanka's agricultural future through innovative project management and sustainable development strategies
+            </p>
+            <div class="hero-cta flex flex-wrap gap-4 justify-center items-center">
+                <a href="#contact" class="btn-primary">
+                    <span>Start a Conversation</span>
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                    </svg>
+                </a>
+                <a href="#expertise" class="btn-secondary">
+                    <span>Explore Expertise</span>
+                </a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 px-6 relative z-10">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div>
+                    <h2 class="section-title serif text-5xl font-black text-primary mb-6">
+                        Building Tomorrow's Agricultural Excellence
+                    </h2>
+                    <p class="text-text-light text-lg leading-relaxed mb-6">
+                        As a dedicated student at Vavuniya University, I'm passionate about bridging the gap between traditional agricultural practices and modern project management methodologies. My focus lies in creating sustainable, scalable solutions for Sri Lanka's agricultural sector.
+                    </p>
+                    <p class="text-text-light text-lg leading-relaxed mb-8">
+                        From the verdant landscapes of Sri Lanka, I draw inspiration to contribute meaningfully to our nation's development through research, innovation, and responsible leadership.
+                    </p>
+                    <div class="flex items-center gap-4">
+                        <div class="h-1 w-16 bg-accent rounded"></div>
+                        <span class="text-sm font-semibold text-primary tracking-wider">VAVUNIYA UNIVERSITY</span>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-6">
+                    <div class="card rounded-2xl p-8 text-center">
+                        <div class="stat-number mb-2">100%</div>
+                        <p class="text-text-light font-medium">Commitment to Excellence</p>
+                    </div>
+                    <div class="card rounded-2xl p-8 text-center">
+                        <div class="stat-number mb-2">∞</div>
+                        <p class="text-text-light font-medium">Growth Mindset</p>
+                    </div>
+                    <div class="card rounded-2xl p-8 text-center col-span-2">
+                        <div class="icon-box mx-auto mb-4">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9"></path>
+                            </svg>
+                        </div>
+                        <p class="text-text-light font-medium">Proudly Sri Lankan, Globally Minded</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expertise Section -->
+    <section id="expertise" class="py-24 px-6 bg-cream relative z-10">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="section-title serif text-5xl font-black text-primary mb-4">Core Expertise</h2>
+                <p class="text-text-light text-lg max-w-2xl mx-auto">
+                    Developing comprehensive skills to drive impactful change in agricultural project management
+                </p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="card rounded-2xl p-8 hover:shadow-2xl">
+                    <div class="icon-box mb-6">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path>
+                        </svg>
+                    </div>
+                    <h3 class="serif text-2xl font-bold text-primary mb-4">Project Management</h3>
+                    <p class="text-text-light mb-6 leading-relaxed">
+                        Mastering strategic planning, resource allocation, and execution methodologies to deliver successful agricultural initiatives
+                    </p>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-sm font-semibold text-text">Strategic Planning</span>
+                                <span class="text-sm font-semibold text-accent">85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-sm font-semibold text-text">Risk Management</span>
+                                <span class="text-sm font-semibold text-accent">78%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 78%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card rounded-2xl p-8 hover:shadow-2xl">
+                    <div class="icon-box mb-6">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="serif text-2xl font-bold text-primary mb-4">Research & Development</h3>
+                    <p class="text-text-light mb-6 leading-relaxed">
+                        Conducting in-depth analysis and developing evidence-based solutions for agricultural challenges
+                    </p>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-sm font-semibold text-text">Data Analysis</span>
+                                <span class="text-sm font-semibold text-accent">82%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 82%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-sm font-semibold text-text">Academic Research</span>
+                                <span class="text-sm font-semibold text-accent">88%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 88%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card rounded-2xl p-8 hover:shadow-2xl">
+                    <div class="icon-box mb-6">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="serif text-2xl font-bold text-primary mb-4">Agricultural Innovation</h3>
+                    <p class="text-text-light mb-6 leading-relaxed">
+                        Specializing in export-oriented agricultural projects with focus on sustainable banana cultivation
+                    </p>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-sm font-semibold text-text">Export Strategy</span>
+                                <span class="text-sm font-semibold text-accent">80%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 80%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-sm font-semibold text-text">Sustainability</span>
+                                <span class="text-sm font-semibold text-accent">90%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 90%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interests Section -->
+    <section id="interests" class="py-24 px-6 relative z-10">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="section-title serif text-5xl font-black text-primary mb-4">Focus Areas</h2>
+                <p class="text-text-light text-lg max-w-2xl mx-auto">
+                    Channeling passion into meaningful contributions across multiple domains
+                </p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="card rounded-2xl p-8 text-center group">
+                    <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary transition-colors duration-300">
+                        <svg class="w-8 h-8 text-primary group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-bold text-primary mb-2">Continuous Learning</h3>
+                    <p class="text-sm text-text-light">Reading and acquiring new skills daily</p>
+                </div>
+
+                <div class="card rounded-2xl p-8 text-center group">
+                    <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary transition-colors duration-300">
+                        <svg class="w-8 h-8 text-primary group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-bold text-primary mb-2">Banana Exports</h3>
+                    <p class="text-sm text-text-light">Developing export strategies for agricultural products</p>
+                </div>
+
+                <div class="card rounded-2xl p-8 text-center group">
+                    <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary transition-colors duration-300">
+                        <svg class="w-8 h-8 text-primary group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-bold text-primary mb-2">Sustainability</h3>
+                    <p class="text-sm text-text-light">Promoting eco-friendly agricultural practices</p>
+                </div>
+
+                <div class="card rounded-2xl p-8 text-center group">
+                    <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary transition-colors duration-300">
+                        <svg class="w-8 h-8 text-primary group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-bold text-primary mb-2">Goal Setting</h3>
+                    <p class="text-sm text-text-light">Strategic planning for future success</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Journey Section -->
+    <section id="journey" class="py-24 px-6 bg-cream relative z-10">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="section-title serif text-5xl font-black text-primary mb-4">My Journey</h2>
+                <p class="text-text-light text-lg">
+                    Every step forward is a commitment to excellence
+                </p>
+            </div>
+            <div class="space-y-12">
+                <div class="timeline-item">
+                    <h3 class="serif text-2xl font-bold text-primary mb-2">Current: University Student</h3>
+                    <p class="text-sm text-accent font-semibold mb-3">Vavuniya University</p>
+                    <p class="text-text-light leading-relaxed">
+                        Pursuing Project Management with a focus on agricultural development. Actively engaging in research projects and building expertise in sustainable farming practices and export management.
+                    </p>
+                </div>
+
+                <div class="timeline-item">
+                    <h3 class="serif text-2xl font-bold text-primary mb-2">Academic Excellence</h3>
+                    <p class="text-sm text-accent font-semibold mb-3">Continuous Growth</p>
+                    <p class="text-text-light leading-relaxed">
+                        Committed to maintaining high academic standards while expanding knowledge in management principles, research methodologies, and agricultural innovation. Always striving to learn and improve step by step.
+                    </p>
+                </div>
+
+                <div class="timeline-item">
+                    <h3 class="serif text-2xl font-bold text-primary mb-2">Future Vision</h3>
+                    <p class="text-sm text-accent font-semibold mb-3">Professional Goals</p>
+                    <p class="text-text-light leading-relaxed">
+                        Aspiring to become a successful professional who contributes meaningfully to Sri Lanka's agricultural sector development, particularly in banana export projects and sustainable farming initiatives.
+                    </p>
+                </div>
+
+                <div class="timeline-item">
+                    <h3 class="serif text-2xl font-bold text-primary mb-2">National Development</h3>
+                    <p class="text-sm text-accent font-semibold mb-3">Long-term Impact</p>
+                    <p class="text-text-light leading-relaxed">
+                        Working towards supporting Sri Lanka's economic growth through innovative agricultural projects, leveraging the country's rich natural resources and cultural heritage for sustainable development.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="py-24 px-6 relative z-10">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="section-title serif text-5xl font-black text-primary mb-4">Core Values</h2>
+                <p class="text-text-light text-lg">
+                    Principles that guide every decision and action
+                </p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="card rounded-2xl p-8 text-center">
+                    <div class="text-6xl mb-4">🎯</div>
+                    <h3 class="serif text-2xl font-bold text-primary mb-3">Responsibility</h3>
+                    <p class="text-text-light leading-relaxed">
+                        Taking ownership of tasks and commitments, ensuring reliability and accountability in all endeavors
+                    </p>
+                </div>
+                <div class="card rounded-2xl p-8 text-center">
+                    <div class="text-6xl mb-4">💪</div>
+                    <h3 class="serif text-2xl font-bold text-primary mb-3">Hard Work</h3>
+                    <p class="text-text-light leading-relaxed">
+                        Dedicating consistent effort to achieve excellence, believing that persistence leads to success
+                    </p>
+                </div>
+                <div class="card rounded-2xl p-8 text-center">
+                    <div class="text-6xl mb-4">🌱</div>
+                    <h3 class="serif text-2xl font-bold text-primary mb-3">Continuous Growth</h3>
+                    <p class="text-text-light leading-relaxed">
+                        Embracing lifelong learning and incremental improvement in knowledge and skills
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 px-6 bg-cream relative z-10">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="section-title serif text-5xl font-black text-primary mb-4">Let's Connect</h2>
+                <p class="text-text-light text-lg">
+                    Have a project in mind or want to collaborate? I'd love to hear from you
+                </p>
+            </div>
+            <div class="card rounded-2xl p-8 md:p-12">
+                <form id="contact-form" class="space-y-6">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-semibold text-primary mb-2">Your Name</label>
+                            <input type="text" name="name" required class="form-input" placeholder="John Doe">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-primary mb-2">Email Address</label>
+                            <input type="email" name="email" required class="form-input" placeholder="john@example.com">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-primary mb-2">Subject</label>
+                        <input type="text" name="subject" required class="form-input" placeholder="Project Collaboration">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-primary mb-2">Message</label>
+                        <textarea name="message" required rows="6" class="form-input" placeholder="Tell me about your project or idea..."></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary w-full justify-center">
+                        <span>Send Message</span>
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                        </svg>
+                    </button>
+                </form>
+                <div id="form-message" class="mt-6 text-center hidden"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 px-6 relative z-10">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-8">
+                <div>
+                    <div class="serif text-3xl font-bold mb-2">Supun Jayasooriya</div>
+                    <p class="text-white/70">Building a sustainable agricultural future for Sri Lanka</p>
+                </div>
+                <div class="flex gap-4">
+                    <a href="mailto:supun@example.com" class="social-link" title="Email">
+                        <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+                            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+                        </svg>
+                    </a>
+                    <a href="#" class="social-link" title="LinkedIn">
+                        <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M16.338 16.338H13.67V12.16c0-.995-.017-2.277-1.387-2.277-1.39 0-1.601 1.086-1.601 2.207v4.248H8.014v-8.59h2.559v1.174h.037c.356-.675 1.227-1.387 2.526-1.387 2.703 0 3.203 1.778 3.203 4.092v4.711zM5.005 6.575a1.548 1.548 0 11-.003-3.096 1.548 1.548 0 01.003 3.096zm-1.337 9.763H6.34v-8.59H3.667v8.59zM17.668 1H2.328C1.595 1 1 1.581 1 2.298v15.403C1 18.418 1.595 19 2.328 19h15.34c.734 0 1.332-.582 1.332-1.299V2.298C19 1.581 18.402 1 17.668 1z" clip-rule="evenodd"></path>
+                        </svg>
+                    </a>
+                    <a href="#" class="social-link" title="GitHub">
+                        <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 4.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.522 0 10 0z" clip-rule="evenodd"></path>
+                        </svg>
+                    </a>
+                    <a href="#" class="social-link" title="Twitter">
+                        <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M6.29 18.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0020 3.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.073 4.073 0 01.8 7.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 010 16.407a11.616 11.616 0 006.29 1.84"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="border-t border-white/20 mt-8 pt-8 text-center text-white/60 text-sm">
+                <p>&copy; 2024 Supun Jayasooriya. All rights reserved. Built with passion for Sri Lanka's future.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animated elements
+        document.querySelectorAll('.card, .timeline-item, .section-title, .skill-bar').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Mobile menu functionality
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const closeMenuBtn = document.getElementById('close-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.remove('translate-x-full');
+        });
+
+        closeMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('translate-x-full');
+        });
+
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('translate-x-full');
+            });
+        });
+
+        // Form submission
+        const contactForm = document.getElementById('contact-form');
+        const formMessage = document.getElementById('form-message');
+
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Show success message
+            formMessage.textContent = 'Thank you for your message! I will get back to you soon.';
+            formMessage.className = 'mt-6 text-center text-primary font-semibold';
+            formMessage.classList.remove('hidden');
+            
+            // Reset form
+            contactForm.reset();
+            
+            // Hide message after 5 seconds
+            setTimeout(() => {
+                formMessage.classList.add('hidden');
+            }, 5000);
+        });
+
+        // Smooth scroll offset for fixed nav
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offset = 80; // Height of fixed nav
+                    const targetPosition = target.offsetTop - offset;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Add scroll effect to navigation
+        let lastScroll = 0;
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > 100) {
+                nav.style.boxShadow = '0 4px 20px rgba(0,0,0,0.08)';
+            } else {
+                nav.style.boxShadow = 'none';
+            }
+            
+            lastScroll = currentScroll;
+        });
+
+        // Parallax effect for hero section
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const heroSection = document.querySelector('section');
+            if (heroSection && scrolled < window.innerHeight) {
+                heroSection.style.transform = `translateY(${scrolled * 0.3}px)`;
+                heroSection.style.opacity = 1 - (scrolled / window.innerHeight) * 0.5;
+            }
+        });
+    </script>
+</body>
+</html>
